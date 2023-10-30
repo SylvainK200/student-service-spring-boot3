@@ -20,7 +20,7 @@ public class Student extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String firstname;
     private String lastname;

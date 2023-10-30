@@ -6,9 +6,10 @@ import com.kouemo.studentservice.feature.dtos.UserRecord;
 import java.util.List;
 
 public interface UserService {
-    public UserRecord create(UserRecord userRecord);
-    public UserRecord update(UserRecord userRecord);
-    public UserRecord findById(UserRecord userRecord);
-    public List<UserRecord> findAllBySearch(String search);
-    public UserRecord deleteById(String userId);
+     UserRecord create(UserRecord userRecord);
+     UserRecord update(UserRecord userRecord);
+     UserRecord findById(UserRecord userRecord);
+     UserRecord findByUserName(String username);
+     List<UserRecord> findAllBySearch(String search);
+     UserRecord deleteById(String userId);
 }

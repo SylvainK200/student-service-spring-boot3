@@ -1,9 +1,13 @@
 package com.kouemo.studentservice.feature.services;
 
 import com.kouemo.studentservice.feature.dtos.ExaminationRecord;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class ExaminationServiceImpl implements ExaminationService{
     @Override
     public ExaminationRecord create(ExaminationRecord examinationRecord) {

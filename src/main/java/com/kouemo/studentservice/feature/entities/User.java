@@ -11,7 +11,6 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@Builder
 @SuperBuilder
 @NoArgsConstructor
 @Table(name="feature_user")
@@ -19,7 +18,11 @@ public class User extends AbstractEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
     private String username;
+
+    @Column(unique = true)
     private String emailAddress;
     private String password;
 

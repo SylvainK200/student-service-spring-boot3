@@ -1,9 +1,12 @@
 package com.kouemo.studentservice.feature.services;
 
 import com.kouemo.studentservice.feature.dtos.UserRecord;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
     @Override
     public UserRecord create(UserRecord userRecord) {
@@ -17,6 +20,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserRecord findById(UserRecord userRecord) {
+        return null;
+    }
+
+    @Override
+    public UserRecord findByUserName(String username) {
         return null;
     }
 

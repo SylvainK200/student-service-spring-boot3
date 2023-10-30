@@ -18,7 +18,7 @@ import java.util.List;
 public class Role extends AbstractEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String key;
     private String description;

@@ -1,9 +1,12 @@
 package com.kouemo.studentservice.feature.services;
 
 import com.kouemo.studentservice.feature.dtos.SubjectRecord;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
+@RequiredArgsConstructor
 public class SubjectServiceImpl implements SubjectService{
     @Override
     public SubjectRecord create(SubjectRecord subjectRecord) {
