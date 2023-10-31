@@ -6,7 +6,7 @@ public record SubjectRecord(
     String name,
     String objectives,
     long credit,
-    ProfessorRecord professor
+    UserRecord professor
 ) {
 
     public static Subject map(SubjectRecord subject){
@@ -14,7 +14,7 @@ public record SubjectRecord(
                 .name(subject.name())
                 .credit(subject.credit())
                 .objectives(subject.objectives())
-                .professor(ProfessorRecord.map(subject.professor()))
+                .professor(UserRecord.map(subject.professor()))
                 .build();
     }
 }

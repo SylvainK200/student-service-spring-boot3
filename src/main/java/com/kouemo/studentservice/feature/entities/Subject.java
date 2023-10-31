@@ -16,16 +16,13 @@ import lombok.experimental.SuperBuilder;
 
 public class Subject extends AbstractEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String name;
     private String objectives;
     private long credit;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Professor professor;
+    private User professor;
 
 
 }

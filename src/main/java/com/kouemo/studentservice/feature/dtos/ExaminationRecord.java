@@ -11,7 +11,7 @@ public record ExaminationRecord (
         Instant dateExamination,
 
         SubjectRecord subject,
-        ProfessorRecord professorRecord
+        UserRecord professorRecord
 
 ){
     public static Examination map(ExaminationRecord examination){
@@ -20,7 +20,7 @@ public record ExaminationRecord (
                 .session(getSession(examination.session()))
                 .dateExamination(examination.dateExamination())
                 .subject(SubjectRecord.map(examination.subject()))
-                .professor(ProfessorRecord.map(examination.professorRecord()))
+                .professor(UserRecord.map(examination.professorRecord()))
                 .build();
     }
 

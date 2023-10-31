@@ -14,11 +14,8 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @Table(name="feature_user")
+@Entity
 public class User extends AbstractEntity{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(unique = true)
     private String username;
 
@@ -26,7 +23,24 @@ public class User extends AbstractEntity{
     private String emailAddress;
     private String password;
 
+    private String address;
+    private String name;
+    private String phoneNumber;
+    private double salary;
+
+    @OneToMany(mappedBy = "professor")
+    private List<Subject> subjects;
+
+    @OneToMany(mappedBy = "student")
+    private List<Examination> examinations;
     @ManyToMany
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "professor")
+    private List<Examination> examinationsByProfessor;
+
+    private String firstname;
+    private String lastname;
+    private String serialNumber;
 
 }

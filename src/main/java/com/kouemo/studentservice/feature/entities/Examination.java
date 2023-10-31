@@ -18,9 +18,6 @@ import java.time.Instant;
 @NoArgsConstructor
 @SuperBuilder
 public class Examination extends AbstractEntity{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Max(20)
     @Min(0)
@@ -35,6 +32,9 @@ public class Examination extends AbstractEntity{
     private Subject subject;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Professor professor;
+    private User professor;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User student;
 
 }
