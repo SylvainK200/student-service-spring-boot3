@@ -2,7 +2,6 @@ package com.kouemo.studentservice.feature.repositories;
 
 import com.kouemo.studentservice.feature.dtos.SubjectRecord;
 import com.kouemo.studentservice.feature.entities.Subject;
-import jdk.jfr.Registered;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

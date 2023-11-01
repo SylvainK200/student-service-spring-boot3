@@ -1,9 +1,6 @@
 package com.kouemo.studentservice.feature.service;
 
-import com.kouemo.studentservice.feature.dtos.ExaminationRecord;
-import com.kouemo.studentservice.feature.dtos.SubjectRecord;
 import com.kouemo.studentservice.feature.dtos.UserRecord;
-import com.kouemo.studentservice.feature.entities.Examination;
 import com.kouemo.studentservice.feature.entities.Subject;
 import com.kouemo.studentservice.feature.entities.User;
 import com.kouemo.studentservice.feature.repositories.UserRepository;
