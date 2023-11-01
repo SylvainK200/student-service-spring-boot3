@@ -17,4 +17,8 @@ public record SubjectRecord(
                 .professor(UserRecord.map(subject.professor()))
                 .build();
     }
+
+    public static SubjectRecord map(Subject subject){
+        return new SubjectRecord(subject.getName(), subject.getObjectives(), subject.getCredit(),UserRecord.map(subject.getProfessor()));
+    }
 }

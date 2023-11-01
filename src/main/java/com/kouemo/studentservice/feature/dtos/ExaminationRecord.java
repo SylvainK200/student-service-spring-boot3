@@ -24,6 +24,16 @@ public record ExaminationRecord (
                 .build();
     }
 
+    public static ExaminationRecord map(Examination examination){
+        return new ExaminationRecord(
+                examination.getRating(),
+                examination.getSession().getKey(),
+                examination.getDateExamination(),
+                SubjectRecord.map(examination.getSubject()),
+                UserRecord.map(examination.getProfessor())
+        );
+    }
+
     public static EnumSession getSession(String session){
        if(session.equals(EnumSession.EXAM.getKey())){
            return EnumSession.EXAM;
@@ -39,4 +49,5 @@ public record ExaminationRecord (
        }
        return EnumSession.PROJECT;
     }
+
 }

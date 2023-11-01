@@ -15,4 +15,8 @@ public record UserRecord(
                 .username(record.username())
                 .build();
     }
+
+    public static UserRecord map(User user){
+        return new UserRecord(user.getUsername(), user.getPassword(), user.getEmailAddress());
+    }
 }
