@@ -1,14 +1,14 @@
 package com.kouemo.studentservice.feature.service;
 
-import com.kouemo.studentservice.feature.dtos.ExaminationRecord;
+import com.kouemo.studentservice.feature.dtos.ExaminationDto;
 import org.springframework.data.domain.Page;
 
 public interface ExaminationService {
-    ExaminationRecord create(ExaminationRecord examination);
-    ExaminationRecord findById(Long examinationId);
-    ExaminationRecord update(ExaminationRecord examination,  Long examinationId);
+    ExaminationDto create(ExaminationDto examination);
+    ExaminationDto findById(Long examinationId);
+    ExaminationDto update(ExaminationDto examination, Long examinationId);
 
-    Page<ExaminationRecord> findAllBySearch( int page, int size,String search,String columnSort);
+    Page<ExaminationDto> findAllBySearch(int page, int size, String search, String columnSort);
 
-    ExaminationRecord delete(Long examinationId);
+    ExaminationDto delete(Long examinationId);
 }

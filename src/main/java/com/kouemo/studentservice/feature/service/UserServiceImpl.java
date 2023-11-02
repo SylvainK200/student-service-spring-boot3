@@ -1,19 +1,19 @@
 package com.kouemo.studentservice.feature.service;
 
-import com.kouemo.studentservice.feature.dtos.UserRecord;
+import com.kouemo.studentservice.feature.dtos.UserDto;
+import com.kouemo.studentservice.feature.dtos.UserDtoInterface;
 import com.kouemo.studentservice.feature.entities.Subject;
 import com.kouemo.studentservice.feature.entities.User;
 import com.kouemo.studentservice.feature.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.ObjectNotFoundException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -23,23 +23,23 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     @Override
-    public UserRecord create(UserRecord user) {
-        User userToSave = UserRecord.map(user);
+    public UserDto create(UserDto user) {
+        User userToSave = UserDto.map(user);
         userRepository.save(userToSave);
         return user;
     }
 
     @Override
-    public UserRecord findById(Long userId) {
+    public UserDto findById(Long userId) {
         Optional<User> user = userRepository.findById(userId);
-        return user.map(UserRecord::map).orElse(null);
+        return user.map(UserDto::map).orElse(null);
     }
 
     @Override
-    public UserRecord update(UserRecord user, Long userId) {
+    public UserDto update(UserDto user, Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         optionalUser.ifPresent(exam->{
-            User updatedUser = UserRecord.map(user);
+            User updatedUser = UserDto.map(user);
             updatedUser.setId(userId);
             userRepository.save(updatedUser);
         });
@@ -47,14 +47,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserRecord> findAllBySearch(int page, int size, String search, String columnSort) {
-        Pageable pageable = PageRequest.of(page,size, Sort.by(columnSort));
-        Page<UserRecord> result = userRepository.findAllBySearch(search,pageable);
-        return result;
+    public Page<UserDto> findAllBySearch(int page, int size, String search, String columnSort) {
+        Pageable pageable = PageRequest.of(page,size);
+        Page<UserDtoInterface> result = userRepository.findAllBySearch(search,pageable);
+        List<UserDto> content = result.getContent().stream().map(UserDto::map).toList();
+        return new PageImpl<>(content,pageable,result.getTotalElements());
     }
 
     @Override
-    public UserRecord delete(Long userId) {
+    public UserDto delete(Long userId) {
         return null;
     }
 }

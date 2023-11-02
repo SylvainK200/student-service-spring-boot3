@@ -12,7 +12,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@Builder
 
 public class Subject extends AbstractEntity{
 

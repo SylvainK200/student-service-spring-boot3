@@ -1,18 +1,18 @@
 package com.kouemo.studentservice.feature.service;
 
-import com.kouemo.studentservice.feature.dtos.SubjectRecord;
+import com.kouemo.studentservice.feature.dtos.SubjectDto;
+import com.kouemo.studentservice.feature.dtos.SubjectDtoInterface;
 import com.kouemo.studentservice.feature.entities.Subject;
 import com.kouemo.studentservice.feature.repositories.SubjectRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.ObjectNotFoundException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,23 +20,23 @@ import java.util.Optional;
 public class SubjectServiceImpl implements SubjectService{
     private final SubjectRepository subjectRepository;
     @Override
-    public SubjectRecord create(SubjectRecord subject) {
-        Subject subjectCreate = SubjectRecord.map(subject);
+    public SubjectDto create(SubjectDto subject) {
+        Subject subjectCreate = SubjectDto.map(subject);
         subjectRepository.save(subjectCreate);
         return subject;
     }
 
     @Override
-    public SubjectRecord findById(Long subjectId) {
+    public SubjectDto findById(Long subjectId) {
         Optional<Subject> subject = subjectRepository.findById(subjectId);
-        return subject.map(SubjectRecord::map).orElse(null);
+        return subject.map(SubjectDto::map).orElse(null);
     }
 
     @Override
-    public SubjectRecord update(SubjectRecord subject, Long subjectId) {
+    public SubjectDto update(SubjectDto subject, Long subjectId) {
         Optional<Subject> optionalSubject = subjectRepository.findById(subjectId);
         optionalSubject.ifPresent(exam->{
-            Subject updateSubject = SubjectRecord.map(subject);
+            Subject updateSubject = SubjectDto.map(subject);
             updateSubject.setId(subjectId);
             subjectRepository.save(updateSubject);
         });
@@ -44,14 +44,15 @@ public class SubjectServiceImpl implements SubjectService{
     }
 
     @Override
-    public Page<SubjectRecord> findAllBySearch(int page, int size,String search, String columnSort) {
-        Pageable pageable = PageRequest.of(page,size, Sort.by(columnSort));
-        Page<SubjectRecord> result = subjectRepository.findAllBySearch(search,pageable);
-        return result;
+    public Page<SubjectDto> findAllBySearch(int page, int size, String search, String columnSort) {
+        Pageable pageable = PageRequest.of(page,size);
+        Page<SubjectDtoInterface> result = subjectRepository.findAllBySearch(search,pageable);
+        List<SubjectDto> content = result.getContent().stream().map(SubjectDto::map).toList();
+        return new PageImpl<>(content,pageable,result.getTotalElements());
     }
 
     @Override
-    public SubjectRecord delete(Long subjectId) {
+    public SubjectDto delete(Long subjectId) {
         return null;
     }
 }

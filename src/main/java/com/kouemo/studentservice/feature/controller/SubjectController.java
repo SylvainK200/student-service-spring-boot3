@@ -1,6 +1,6 @@
 package com.kouemo.studentservice.feature.controller;
 
-import com.kouemo.studentservice.feature.dtos.SubjectRecord;
+import com.kouemo.studentservice.feature.dtos.SubjectDto;
 import com.kouemo.studentservice.feature.service.SubjectService;
 import com.kouemo.studentservice.utils.AppUtils;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +15,13 @@ public class SubjectController {
     private final SubjectService subjectService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<SubjectRecord> findUserById(@PathVariable Long id){
+    public ResponseEntity<SubjectDto> findUserById(@PathVariable Long id){
         var subject = subjectService.findById(id);
         return ResponseEntity.ok(subject);
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<SubjectRecord>> findAllBySearch(
+    public ResponseEntity<Page<SubjectDto>> findAllBySearch(
             @RequestParam(name="size",required = false,defaultValue = "10") String size,
             @RequestParam(name="page",required = false,defaultValue = "1") String page,
             @RequestParam(name="search",required = false, defaultValue = "") String search,
@@ -34,12 +34,12 @@ public class SubjectController {
     }
 
     @PostMapping("")
-    public ResponseEntity<SubjectRecord> create(@RequestBody SubjectRecord subject){
+    public ResponseEntity<SubjectDto> create(@RequestBody SubjectDto subject){
         return ResponseEntity.ok(subjectService.create(subject));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SubjectRecord> update(@PathVariable Long id,@RequestBody SubjectRecord updatedSubject){
+    public ResponseEntity<SubjectDto> update(@PathVariable Long id, @RequestBody SubjectDto updatedSubject){
         return ResponseEntity.ok(subjectService.update(updatedSubject,id));
     }
 

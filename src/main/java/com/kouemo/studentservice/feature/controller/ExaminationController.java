@@ -1,6 +1,6 @@
 package com.kouemo.studentservice.feature.controller;
 
-import com.kouemo.studentservice.feature.dtos.ExaminationRecord;
+import com.kouemo.studentservice.feature.dtos.ExaminationDto;
 import com.kouemo.studentservice.feature.service.ExaminationService;
 import com.kouemo.studentservice.utils.AppUtils;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +17,13 @@ public class ExaminationController {
     private final ExaminationService examinationService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ExaminationRecord> findUserById(@PathVariable Long id){
+    public ResponseEntity<ExaminationDto> findUserById(@PathVariable Long id){
         var examination = examinationService.findById(id);
         return ResponseEntity.ok(examination);
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<ExaminationRecord>> findAllBySearch(
+    public ResponseEntity<Page<ExaminationDto>> findAllBySearch(
             @RequestParam(name="size",required = false,defaultValue = "10") String size,
             @RequestParam(name="page",required = false,defaultValue = "1") String page,
             @RequestParam(name="search",required = false, defaultValue = "") String search,
@@ -36,12 +36,12 @@ public class ExaminationController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ExaminationRecord> create(@RequestBody ExaminationRecord examination){
+    public ResponseEntity<ExaminationDto> create(@RequestBody ExaminationDto examination){
         return ResponseEntity.ok(examinationService.create(examination));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ExaminationRecord> update(@PathVariable Long id,@RequestBody ExaminationRecord updatedExamination){
+    public ResponseEntity<ExaminationDto> update(@PathVariable Long id, @RequestBody ExaminationDto updatedExamination){
         return ResponseEntity.ok(examinationService.update(updatedExamination,id));
     }
 

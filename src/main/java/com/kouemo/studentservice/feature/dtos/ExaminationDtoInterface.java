@@ -7,8 +7,10 @@ public interface ExaminationDtoInterface extends SubjectDtoInterface{
     double getRating();
     String getSession();
     Instant getDateExamination();
+    Long getId();
 
 
+    Long getProfessorId();
     String getProfessorName();
     String getProfessorEmailAddress();
 
@@ -16,6 +18,7 @@ public interface ExaminationDtoInterface extends SubjectDtoInterface{
 
 
     String getStudentName();
+    Long getStudentId();
     String getStudentPhoneNumber();
 
     String getStudentEmailAddress();

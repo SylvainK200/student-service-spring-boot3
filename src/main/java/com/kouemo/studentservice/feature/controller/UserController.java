@@ -1,8 +1,6 @@
 package com.kouemo.studentservice.feature.controller;
 
-import com.kouemo.studentservice.feature.dtos.ExaminationRecord;
-import com.kouemo.studentservice.feature.dtos.UserRecord;
-import com.kouemo.studentservice.feature.service.ExaminationService;
+import com.kouemo.studentservice.feature.dtos.UserDto;
 import com.kouemo.studentservice.feature.service.UserService;
 import com.kouemo.studentservice.utils.AppUtils;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +15,13 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserRecord> findUserById(@PathVariable Long id){
+    public ResponseEntity<UserDto> findUserById(@PathVariable Long id){
         var user = userService.findById(id);
         return ResponseEntity.ok(user);
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<UserRecord>> findAllBySearch(
+    public ResponseEntity<Page<UserDto>> findAllBySearch(
             @RequestParam(name="size",required = false,defaultValue = "10") String size,
             @RequestParam(name="page",required = false,defaultValue = "1") String page,
             @RequestParam(name="search",required = false, defaultValue = "") String search,
@@ -36,12 +34,12 @@ public class UserController {
     }
 
     @PostMapping("")
-    public ResponseEntity<UserRecord> create(@RequestBody UserRecord user){
+    public ResponseEntity<UserDto> create(@RequestBody UserDto user){
         return ResponseEntity.ok(userService.create(user));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserRecord> update(@PathVariable Long id,@RequestBody UserRecord updatedUser){
+    public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserDto updatedUser){
         return ResponseEntity.ok(userService.update(updatedUser,id));
     }
 
