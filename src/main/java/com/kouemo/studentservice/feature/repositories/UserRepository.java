@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
 
@@ -34,4 +36,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
             "and (:search='' or upper(fuser.serial_number) like concat('%',upper(:search),'%')) "+
             ")")
     Page<UserDtoInterface> findAllBySearch(String search, Pageable pageable);
+
+    Optional<User> findByUsername(String username);
 }

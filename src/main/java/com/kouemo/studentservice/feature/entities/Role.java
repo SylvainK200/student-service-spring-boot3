@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 public class Role extends AbstractEntity{
 
-
+    @Column(unique = true)
     private String key;
     private String description;
 }
