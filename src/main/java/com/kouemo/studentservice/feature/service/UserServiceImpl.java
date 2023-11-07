@@ -5,6 +5,8 @@ import com.kouemo.studentservice.feature.dtos.UserDtoInterface;
 import com.kouemo.studentservice.feature.entities.Subject;
 import com.kouemo.studentservice.feature.entities.User;
 import com.kouemo.studentservice.feature.repositories.UserRepository;
+import com.kouemo.studentservice.generics.exceptions.feature_exception.UserExistException;
+import com.kouemo.studentservice.generics.exceptions.feature_exception.UserNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.ObjectNotFoundException;
@@ -40,8 +42,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto create(UserDto user) {
         User userToSave = UserDto.map(user);
-        userRepository.save(userToSave);
-        return user;
+        Optional<User> optionalUser = userRepository.findByUsername(user.getUsername());
+        if(optionalUser.isEmpty()){
+            userRepository.save(userToSave);
+            return user;
+        }
+       throw  new UserExistException("Utilisateur existant","null");
     }
 
     @Override
@@ -58,7 +64,7 @@ public class UserServiceImpl implements UserService {
             updatedUser.setId(userId);
             userRepository.save(updatedUser);
         });
-        throw new ObjectNotFoundException(Subject.class.getSimpleName(),userId);
+        throw new UserNotFoundException(Subject.class.getSimpleName(),userId.toString(),"User not found");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.kouemo.studentservice.feature.entities;
 
+import com.kouemo.studentservice.generics.EntityOperationListener;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.time.Instant;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(EntityOperationListener.class)
 @SuperBuilder
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

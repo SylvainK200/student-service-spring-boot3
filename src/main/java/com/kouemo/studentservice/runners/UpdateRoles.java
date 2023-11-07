@@ -2,7 +2,6 @@ package com.kouemo.studentservice.runners;
 
 import com.kouemo.studentservice.feature.entities.Role;
 import com.kouemo.studentservice.feature.repositories.RoleRepository;
-import com.kouemo.studentservice.feature.repositories.UserRepository;
 import com.kouemo.studentservice.generics.enums.RoleEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;

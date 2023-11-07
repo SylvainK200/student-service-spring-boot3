@@ -4,6 +4,7 @@ import com.kouemo.studentservice.feature.dtos.SubjectDto;
 import com.kouemo.studentservice.feature.dtos.SubjectDtoInterface;
 import com.kouemo.studentservice.feature.entities.Subject;
 import com.kouemo.studentservice.feature.repositories.SubjectRepository;
+import com.kouemo.studentservice.generics.exceptions.feature_exception.SubjectNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.ObjectNotFoundException;
@@ -40,7 +41,7 @@ public class SubjectServiceImpl implements SubjectService{
             updateSubject.setId(subjectId);
             subjectRepository.save(updateSubject);
         });
-        throw new ObjectNotFoundException(Subject.class.getSimpleName(),subjectId);
+        throw new SubjectNotFoundException(Subject.class.getSimpleName(),subjectId.toString(),"Subject not found");
     }
 
     @Override

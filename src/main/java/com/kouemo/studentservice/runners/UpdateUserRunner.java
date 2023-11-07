@@ -18,13 +18,14 @@ import java.util.Optional;
 public class UpdateUserRunner implements ApplicationRunner {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
     @Override
     public void run(ApplicationArguments args) throws Exception {
         Optional<User> user = userRepository.findByUsername("SuperUser");
         if(user.isEmpty()){
             User superUser = User.builder()
                     .username("SuperUser")
-                    .password("password")
+                    .password(passwordEncoder.encode("password"))
                     .roles(roleRepository.findAll())
                     .build();
             userRepository.save(superUser);
