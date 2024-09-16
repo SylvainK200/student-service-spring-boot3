@@ -5,8 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService {
-
-    UserDetailsService userDetailsService();
     UserDto create(UserDto user);
     UserDto findById(Long userId);
     UserDto update(UserDto user, Long userId);

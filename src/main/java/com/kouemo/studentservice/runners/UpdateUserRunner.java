@@ -4,10 +4,9 @@ import com.kouemo.studentservice.feature.entities.User;
 import com.kouemo.studentservice.feature.repositories.RoleRepository;
 import com.kouemo.studentservice.feature.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 

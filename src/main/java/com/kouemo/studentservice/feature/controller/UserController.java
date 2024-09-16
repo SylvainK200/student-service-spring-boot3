@@ -6,6 +6,7 @@ import com.kouemo.studentservice.utils.AppUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +16,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('SUPER_USER')")
     public ResponseEntity<UserDto> findUserById(@PathVariable Long id){
         var user = userService.findById(id);
         return ResponseEntity.ok(user);

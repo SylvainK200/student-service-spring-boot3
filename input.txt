@@ -1,0 +1,4 @@
+CONTAINER ID   IMAGE              COMMAND                  CREATED             STATUS          PORTS                                       NAMES
+1fdfdf78a8ed   postgres           "docker-entrypoint.s…"   About an hour ago   Up 47 minutes   0.0.0.0:5434->5432/tcp, :::5434->5432/tcp   db
+c99926bcb09b   wordpress:latest   "docker-entrypoint.s…"   6 weeks ago         Up 4 hours      0.0.0.0:8000->80/tcp, :::8000->80/tcp       new_workdpress-wordpress-1
+cf233ced6a1e   mysql:5.7          "docker-entrypoint.s…"   6 weeks ago         Up 4 hours      3306/tcp, 33060/tcp                         new_workdpress-db-1
